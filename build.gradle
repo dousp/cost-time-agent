@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+    id "com.github.johnrengelman.shadow" version "7.0.0"
+}
+
+group 'org.dsp'
+version '1.0-SNAPSHOT'
+
+
+
+shadowJar {
+    manifest {
+        attributes(
+            "Manifest-Version": 1.0,
+            "Premain-Class": "org.dsp.agent.CostTimeAgent",
+            "Can-Redefine-Classes": true
+        )
+
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation group: 'net.bytebuddy', name: 'byte-buddy', version: '1.11.0'
+    testImplementation group: 'net.bytebuddy', name: 'byte-buddy-agent', version: '1.11.0'
+}
